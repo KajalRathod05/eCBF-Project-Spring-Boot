@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller.auth;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.DTOs.UserLoginRequest;
-import com.DTOs.UserLoginResponse;
+import com.DTOs.auth.UserLoginRequest;
+import com.DTOs.auth.UserLoginResponse;
 import com.exception.LoginException;
 import com.model.Userlogin;
 import com.security.AuthService;

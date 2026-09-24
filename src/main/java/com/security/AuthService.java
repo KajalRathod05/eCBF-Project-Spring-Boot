@@ -5,8 +5,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import com.DTOs.UserLoginRequest;
-import com.DTOs.UserLoginResponse;
+import com.DTOs.auth.UserLoginRequest;
+import com.DTOs.auth.UserLoginResponse;
 import com.model.Userlogin;
 
 import lombok.RequiredArgsConstructor;
