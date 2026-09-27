@@ -1,5 +1,4 @@
 package com.exception;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -8,17 +7,15 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import com.exception.SA.EmployeeException;
-
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(EmployeeException.class)
-    public ResponseEntity<ApiError> handleEmployeeException(EmployeeException exp) {
+    
+    @ExceptionHandler(GlobalException.class)
+    public ResponseEntity<ApiError> handleGlobalException(GlobalException exp) {
         ApiError apiError = new ApiError(exp.getMessage(), HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }

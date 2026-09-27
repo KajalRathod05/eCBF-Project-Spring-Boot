@@ -2,16 +2,13 @@ package com.serviceImpl.SA;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
-
 import com.DTOs.SA.EmployeeRequest;
 import com.DTOs.SA.EmployeeResponse;
-import com.exception.SA.EmployeeException;
+import com.exception.GlobalException;
 import com.model.SA.Employee;
 import com.repository.SA.EmployeeRepository;
 import com.service.SA.EmployeeService;
-
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -26,15 +23,15 @@ public class EmployeeServiceImpl implements EmployeeService{
     public void addEmployee(EmployeeRequest employeeRequest) {
 
         if (employeeRepository.existsByEmailid(employeeRequest.getEmailid())) {
-            throw new EmployeeException("Employee already exists with this email ID");
+            throw new GlobalException("Employee already exists with this email ID");
         }
 
         if (employeeRepository.existsByUserid(employeeRequest.getUserid())) {
-            throw new EmployeeException("Employee already exists with this User ID");
+            throw new GlobalException("Employee already exists with this User ID");
         }
 
         if (employeeRepository.existsByEmployeecode(employeeRequest.getEmployeecode())) {
-            throw new EmployeeException("Employee already exists with this Employee Code");
+            throw new GlobalException("Employee already exists with this Employee Code");
         }
         // Map EmployeeRequest DTO -> Employee Entity
         Employee employee = mapToEntity(employeeRequest);
@@ -43,23 +40,23 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 	
 	@Override
-	public void updateEmployee(String employeeid, EmployeeRequest employeeRequest) throws EmployeeException {
+	public void updateEmployee(String employeeid, EmployeeRequest employeeRequest) throws GlobalException {
 	    Employee existingEmployee = employeeRepository.findByEmployeeid(employeeid)
-	            .orElseThrow(() -> new EmployeeException("Employee not found with ID: " + employeeid));
+	            .orElseThrow(() -> new GlobalException("Employee not found with ID: " + employeeid));
 	    
 	    if (!existingEmployee.getEmailid().equalsIgnoreCase(employeeRequest.getEmailid()) &&
 	            employeeRepository.existsByEmailid(employeeRequest.getEmailid())) {
-            throw new EmployeeException("Email ID is already registered with another employee");
+            throw new GlobalException("Email ID is already registered with another employee");
         }
 
         if (!existingEmployee.getUserid().equalsIgnoreCase(employeeRequest.getUserid()) &&
             employeeRepository.existsByUserid(employeeRequest.getUserid())) {
-            throw new EmployeeException("User ID is already registered with another employee");
+            throw new GlobalException("User ID is already registered with another employee");
         }
 
         if (!existingEmployee.getEmployeecode().equalsIgnoreCase(employeeRequest.getEmployeecode()) &&
             employeeRepository.existsByEmployeecode(employeeRequest.getEmployeecode())) {
-            throw new EmployeeException("Employee Code is already registered with another employee");
+            throw new GlobalException("Employee Code is already registered with another employee");
         }
 
 	    // 2. Map updated fields from DTO to entity
@@ -146,10 +143,10 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public void deleteEmployee(String employeeid) {
         Employee employee = employeeRepository.findByEmployeeid(employeeid)
-                .orElseThrow(() -> new EmployeeException("Employee not found with ID: " + employeeid));
+                .orElseThrow(() -> new GlobalException("Employee not found with ID: " + employeeid));
 
         if ("Active".equalsIgnoreCase(employee.getStatus())) {
-            throw new EmployeeException("Cannot delete an active employee. Deactivate the employee first.");
+            throw new GlobalException("Cannot delete an active employee. Deactivate the employee first.");
         }
 
         employeeRepository.delete(employee);
