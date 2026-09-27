@@ -8,15 +8,15 @@ import lombok.Data;
 public class ApiError {
 
 	private LocalDateTime timeStamp;
-	private String error;
+	private String message;
 	private HttpStatus StatusCode;
 	
 	//public ApiError() {this.timeStamp= LocalDateTime.now();}
 
-	public ApiError( String error, HttpStatus StatusCode) {
+	public ApiError( String message, HttpStatus StatusCode) {
 		super();
 		this.timeStamp= LocalDateTime.now();
-		this.error = error;
+		this.message = message;
 		this.StatusCode = StatusCode;
 	}
 	
