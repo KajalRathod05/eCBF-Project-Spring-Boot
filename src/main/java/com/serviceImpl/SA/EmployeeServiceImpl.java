@@ -64,7 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	    existingEmployee.setEmployeecode(employeeRequest.getEmployeecode());
 	    existingEmployee.setBranch(employeeRequest.getBranch());
 	    existingEmployee.setDepartment(employeeRequest.getDepartment());
-	    existingEmployee.setRole(employeeRequest.getRole());
+	    existingEmployee.setRoleid(employeeRequest.getRoleid());
 	    existingEmployee.setEmployeetype(employeeRequest.getEmployeetype());
 	    existingEmployee.setGrade(employeeRequest.getGrade());
 	    existingEmployee.setUserclassification(employeeRequest.getUserclassification());
@@ -100,7 +100,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         employee.setEmployeecode(dto.getEmployeecode());
         employee.setBranch(dto.getBranch());
         employee.setDepartment(dto.getDepartment());
-        employee.setRole(dto.getRole());
+        employee.setRoleid(dto.getRoleid());
         employee.setMaker(dto.isMaker());
         employee.setReviewer(dto.isReviewer());
         employee.setChecker(dto.isChecker());
@@ -124,7 +124,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         response.setEmployeecode(entity.getEmployeecode());
         response.setBranch(entity.getBranch());
         response.setDepartment(entity.getDepartment());
-        response.setRole(entity.getRole());
+        response.setRoleid(entity.getRoleid());
         response.setMaker(entity.isMaker());
         response.setReviewer(entity.isReviewer());
         response.setChecker(entity.isChecker());
@@ -151,4 +151,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 
         employeeRepository.delete(employee);
     }
+
+	@Override
+	public EmployeeResponse getEmployeeById(String employeeid) {
+		
+		Employee employee = employeeRepository.findByEmployeeid(employeeid).orElseThrow();
+		EmployeeResponse employeeResponse =  this.mapToResponse(employee);
+		
+		return employeeResponse;
+	}
 }

@@ -1,22 +1,18 @@
 package com.serviceImpl;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.exception.CustomerException;
-import com.model.Customer;
 import com.model.Customertemp;
-import com.repository.CustomerRepository;
 import com.repository.CustomerTempRepository;
 import com.service.CustomerService;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
 
-	@Autowired
-    private CustomerRepository customerRepository;
+//	@Autowired
+//    private CustomerRepository customerRepository;
 	
 	@Autowired
 	private CustomerTempRepository customerTempRepository;

@@ -23,6 +23,7 @@ public class UserRightsMST {
     private Long userrightsid;
     private Integer moduleid;
     private String mastername;
+    private Integer pagetypeid;
     private Integer addopn;
     private Integer editopn;
     private Integer viewopn;

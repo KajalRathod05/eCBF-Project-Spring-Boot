@@ -25,6 +25,7 @@ public class RoleRightsRequest {
     public static class UserRightsDTO {
         private Integer moduleid;
         private String mastername;
+        private Integer pagetypeid;
         private Integer addopn;
         private Integer editopn;
         private Integer viewopn;
