@@ -14,4 +14,6 @@ public interface EmployeeService {
 
 	void deleteEmployee(String employeeid);
 
+	EmployeeResponse getEmployeeById(String employeeid);
+
 }

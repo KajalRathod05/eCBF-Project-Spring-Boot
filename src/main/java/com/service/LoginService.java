@@ -1,12 +1,12 @@
 package com.service;
 
-import com.model.Userlogin;
+import com.DTOs.auth.UserLoginRequest;
 
 public interface LoginService {
 
 
-	void userRegistration(Userlogin login);
+	void userRegistration(UserLoginRequest userLoginRequest);
 
-	void resetPassword(Userlogin login);
+	void resetPassword(UserLoginRequest userLoginRequest);
 
 }

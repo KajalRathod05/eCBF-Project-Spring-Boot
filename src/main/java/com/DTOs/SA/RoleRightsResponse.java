@@ -23,6 +23,7 @@ public class RoleRightsResponse {
     public static class UserRightsResDTO {
         private Integer moduleid;
         private String mastername;
+        private Integer pagetypeid;
         private Integer addopn;
         private Integer editopn;
         private Integer viewopn;

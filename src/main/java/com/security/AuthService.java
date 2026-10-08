@@ -31,7 +31,7 @@ public class AuthService {
 		System.out.println("Given Authenticated User---------->"+user.getUsername());
 		
 		String token = authUtil.generateAccessToken(user);//Now create a JWT for this authenticated user.
-		System.out.println("token:::"+token);
+		System.out.println("token created");
 		return new UserLoginResponse(token, user.getUserid());
 	}
 }

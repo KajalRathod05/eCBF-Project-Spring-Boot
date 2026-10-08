@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.DTOs.auth.UserLoginRequest;
 import com.DTOs.auth.UserLoginResponse;
-import com.model.Userlogin;
 import com.security.AuthService;
 import com.service.LoginService;
 import lombok.RequiredArgsConstructor;
@@ -33,21 +32,20 @@ public class AuthController {
 	}
 	
 	@PostMapping("/userRegister")
-	public ResponseEntity<Map<String, Object>> userRegistration(@RequestBody Userlogin login) {
+	public ResponseEntity<Map<String, Object>> userRegistration(@RequestBody UserLoginRequest userLoginRequest) {
 		
 	    Map<String, Object> response = new HashMap<>();
-        loginService.userRegistration(login);
-        
+        loginService.userRegistration(userLoginRequest);   
         response.put("status", "success");
         response.put("message", "Registration Successful!");
         return ResponseEntity.ok(response);
 	}
 	
 	@PostMapping("/resetPassword")
-	public ResponseEntity<Map<String, Object>> resetPassword(@RequestBody Userlogin login) {
+	public ResponseEntity<Map<String, Object>> resetPassword(@RequestBody UserLoginRequest userLoginRequest) {
 
 		 Map<String, Object> response = new HashMap<>();
-    	 loginService.resetPassword(login);
+    	 loginService.resetPassword(userLoginRequest);
     	 response.put("status", "success");
          response.put("message", "Password reset successfully");
          return ResponseEntity.ok(response);

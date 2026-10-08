@@ -11,7 +11,7 @@ public class EmployeeRequest {
     private String employeecode;
     private String branch;
     private String department;
-    private String role;
+    private Long roleid;
     private boolean maker;
     private boolean reviewer;
     private boolean checker;
